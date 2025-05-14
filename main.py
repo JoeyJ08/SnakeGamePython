@@ -1,0 +1,74 @@
+from tkinter import *
+import random
+import time  # Import the time module
+
+root = Tk()
+root.geometry("800x600")
+root.config(bg="teal")
+
+'''MODEL'''
+def game_loop(snake, apple, count): # Create a function for the game loop
+   pass
+
+def start():
+    canvas.delete("all")
+    sq_size = 40
+    for y in range(0, int(700/sq_size)):
+        for x in range(0,int(760/sq_size)):
+            if (x + y) % 2 == 0:
+                canvas.create_rectangle(x * sq_size, y * sq_size, (x * sq_size) + sq_size, (y * sq_size) + sq_size, fill="white", width=0)
+
+    apple = Apple(canvas)
+    snake = [Head(canvas)]
+    count = 0
+    game_loop(snake, apple, count)
+class Apple():
+    pass
+
+    def relocate(self):
+        pass
+
+class Head:
+    def __init__(self, canvas):
+        pass
+
+    def move(self, snake,apple):
+       pass
+
+    def collide(self, obj):
+        pass
+
+    def north(self, event=None):
+        pass
+
+    def east(self, event=None):
+        pass
+
+    def south(self, event=None):
+        pass
+
+    def west(self, event=None):
+        pass
+
+class Segment:
+    def __init__(self,canvas, obj, color):
+        pass
+   
+    def relocate(self,obj):
+        pass
+       
+
+'''CONTROLLER'''
+start_button = Button(root, text = "Press to Start", fg = "white", bg = "teal", command = start)
+start_button.place(x=20, y = 10, width = 100, height = 40)
+'''VIEW'''
+canvas = Canvas(root, bg="light gray")
+canvas.place(x=20, y=60, width=760, height=520)
+
+sq_size = 40
+for y in range(0, int(520/sq_size)):
+    for x in range(0,int(760/sq_size)):
+        if (x + y) % 2 == 0:
+            canvas.create_rectangle(x * sq_size, y * sq_size, (x * sq_size) + sq_size, (y * sq_size) + sq_size, fill="white", width=0)
+
+root.mainloop()
