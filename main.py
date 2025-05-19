@@ -23,14 +23,26 @@ def start():
     count = 0
     game_loop(snake, apple, count)
 class Apple():
-    pass
+    def __init__(self, canvas):
+        self.x_coor = random.randint(0, 18)*40+20
+        self.y_coor = random.randint(0, 12)*40+20
+        self.radius = 18
+        self.apple = canvas.create_oval(self.x_coor - self.radius, self.y_coor - self.radius, 
+                                        self.x_coor + self.radius, self.y_coor + self.radius,
+                                        fill = "red")
 
     def relocate(self):
-        pass
+        self.x_coor = random.randint(0, 18)*40+20
+        self.y_coor = random.randint(0, 12)*40+20
+        canvas.coords(self.apple, 
+                      self.x_coor - self.radius, self.y_coor - self.radius,
+                      self.x_coor + self.radius, self.y_coor + self.radius)
 
 class Head:
     def __init__(self, canvas):
-        pass
+        self.x_coor = 9*40+20
+        self.y_coor = 6*40+20
+        alive = True
 
     def move(self, snake,apple):
        pass
