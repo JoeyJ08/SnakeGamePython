@@ -8,7 +8,8 @@ root.config(bg="teal")
 
 '''MODEL'''
 def game_loop(snake, apple, count): # Create a function for the game loop
-   pass
+   snake[0].move(snake, apple)
+   canvas.after(90, lambda: game_loop(snake, apple, count))
 
 def start():
     canvas.delete("all")
@@ -41,16 +42,28 @@ class Apple():
 class Head:
     def __init__(self, canvas):
         self.x_coor = 9*40+20
-        self.y_coor = 6*40+20
+        self.y_coor = 8*40+20
+        self.simp_x_coor = 9
+        self.simp_y_coor = 6
         self.alive = True
         self.direction = "north"
-        self.speed = 1
         self.head_segment = canvas.create_rectangle(self.x_coor - 20, self.y_coor - 20,
                                                     self.x_coor + 20, self.y_coor + 20,
                                                     fill= "green")
 
-    def move(self, snake,apple):
-       pass
+    def move(self, snake, apple):
+        if self.direction == 'north':
+           canvas.move(self.head_segment, 0, -40)
+           self.y_coor -= 40
+        elif self.direction == 'south':
+            canvas.move(self.head_segment, 0, 40)
+            self.y_coor += 40
+        elif self.direction == 'west':
+            canvas.move(self.head_segment, -40, 0)
+            self.x_coor -= 40
+        elif self.direction == 'east':
+            canvas.move(self.head_segment, 40, 0)
+            self.x_coor += 40
 
     def collide(self, obj):
         pass
