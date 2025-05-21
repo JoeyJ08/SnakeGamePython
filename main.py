@@ -42,7 +42,12 @@ class Head:
     def __init__(self, canvas):
         self.x_coor = 9*40+20
         self.y_coor = 6*40+20
-        alive = True
+        self.alive = True
+        self.direction = "north"
+        self.speed = 1
+        self.head_segment = canvas.create_rectangle(self.x_coor - 20, self.y_coor - 20,
+                                                    self.x_coor + 20, self.y_coor + 20,
+                                                    fill= "green")
 
     def move(self, snake,apple):
        pass
