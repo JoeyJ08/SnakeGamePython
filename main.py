@@ -8,6 +8,9 @@ root.config(bg="teal")
 
 '''MODEL'''
 def game_loop(snake, apple, count): # Create a function for the game loop
+   snake_x, snake_y = snake[0].give_coors()
+   print(f'{snake_x} {snake_y}')
+   apple.get_eated(snake_x, snake_y)
    snake[0].move(snake, apple)
    canvas.after(110, lambda: game_loop(snake, apple, count))
 
@@ -32,6 +35,10 @@ class Apple():
         self.apple = canvas.create_oval(self.x_coor - self.radius, self.y_coor - self.radius, 
                                         self.x_coor + self.radius, self.y_coor + self.radius,
                                         fill = "red")
+
+    def get_eated(self, obj_x, obj_y):
+        if obj_x == self.x_coor and obj_y == self.y_coor:
+            self.relocate()
 
     def relocate(self):
         self.x_coor = random.randint(0, 18)*40+20
@@ -69,6 +76,9 @@ class Head:
         elif self.direction == 'east':
             canvas.move(self.head_segment, 40, 0)
             self.x_coor += 40
+
+    def give_coors(self):
+        return self.x_coor, self.y_coor
 
     def collide(self, obj):
         pass
