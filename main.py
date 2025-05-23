@@ -9,7 +9,6 @@ root.config(bg="teal")
 '''MODEL'''
 def game_loop(snake, apple, count): # Create a function for the game loop
    snake_x, snake_y = snake[0].give_coors()
-   print(f'{snake_x} {snake_y}')
    apple.get_eated(snake_x, snake_y)
    snake[0].move(snake, apple)
    canvas.after(110, lambda: game_loop(snake, apple, count))
@@ -80,6 +79,9 @@ class Head:
     def give_coors(self):
         return self.x_coor, self.y_coor
 
+    def game_over_snake(self):
+        pass
+
     def collide(self, obj):
         pass
 
@@ -90,6 +92,7 @@ class Head:
     def east(self, event=None):
         if self.direction != 'west':
             self.direction = 'east'
+            self.game_over_snake()
 
     def south(self, event=None):
         if self.direction != 'north':
@@ -102,7 +105,7 @@ class Head:
 class Segment:
     def __init__(self,canvas, obj, color):
         pass
-   
+
     def relocate(self,obj):
         pass
        
