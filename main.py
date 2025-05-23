@@ -9,7 +9,7 @@ root.config(bg="teal")
 '''MODEL'''
 def game_loop(snake, apple, count): # Create a function for the game loop
    snake[0].move(snake, apple)
-   canvas.after(90, lambda: game_loop(snake, apple, count))
+   canvas.after(110, lambda: game_loop(snake, apple, count))
 
 def start():
     canvas.delete("all")
@@ -23,6 +23,7 @@ def start():
     snake = [Head(canvas)]
     count = 0
     game_loop(snake, apple, count)
+
 class Apple():
     def __init__(self, canvas):
         self.x_coor = random.randint(0, 18)*40+20
@@ -47,6 +48,10 @@ class Head:
         self.simp_y_coor = 6
         self.alive = True
         self.direction = "north"
+        root.bind("<Up>", self.north)
+        root.bind("<Down>", self.south)
+        root.bind("<Left>", self.west)
+        root.bind("<Right>", self.east)
         self.head_segment = canvas.create_rectangle(self.x_coor - 20, self.y_coor - 20,
                                                     self.x_coor + 20, self.y_coor + 20,
                                                     fill= "green")
@@ -69,16 +74,20 @@ class Head:
         pass
 
     def north(self, event=None):
-        pass
+        if self.direction != "south":
+            self.direction = 'north'
 
     def east(self, event=None):
-        pass
+        if self.direction != 'west':
+            self.direction = 'east'
 
     def south(self, event=None):
-        pass
+        if self.direction != 'north':
+            self.direction = 'south'
 
     def west(self, event=None):
-        pass
+        if self.direction != 'east':
+            self.direction = 'west'
 
 class Segment:
     def __init__(self,canvas, obj, color):
